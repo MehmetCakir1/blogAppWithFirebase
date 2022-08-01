@@ -2,7 +2,7 @@ import Blog from "../assets/blog.png";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { createUser } from "../helpers/firebase";
+import { createUser, signUpProvider } from "../helpers/firebase";
 
 
 const Register = () => {
@@ -12,8 +12,10 @@ const Register = () => {
   const [password, setPassword] = useState();
   const navigate = useNavigate();
 
+  const handleProviderLogin=()=>{
+    signUpProvider(navigate)
+  }
 
-  
 const handleSubmit = (e) => {
   e.preventDefault();
   const displayName = `${firstName} ${lastName}`;
@@ -81,7 +83,7 @@ const handleSubmit = (e) => {
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
-          <button type="submit" className="btn btn-secondary d-flex align-items-center justify-content-center">
+          <button type="submit" className="btn btn-secondary d-flex align-items-center justify-content-center" onClick={handleProviderLogin}>
             With Google  &nbsp; <span className="fs-4 d-flex align-items-center"><FcGoogle/></span>
           </button>
         </div>

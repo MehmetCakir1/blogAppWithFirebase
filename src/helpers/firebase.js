@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,13 +31,13 @@ export const createUser= async(email,password,navigate,displayName)=>{
             displayName: displayName
         })
 
-        // toastify
-        console.log(userCredential);
+        toastSuccessNotify("Registered successfully")
+        // console.log(userCredential);
         navigate("/")
     }
     catch(error){
-        // toastify
-        console.log(error);
+        toastErrorNotify(error.message);
+        // console.log(error);
     }
 }
 /*---------------------sign in----------------------*/
@@ -47,10 +48,10 @@ export const signIn = async(email,password,navigate)=>{
         let userCredential=await signInWithEmailAndPassword(auth, email, password)
         navigate("/")
         console.log(userCredential);
-        // toastSuccessNotify("Logged in successfully")
+        toastSuccessNotify("Logged in successfully")
       }catch(error){
-        // toastErrorNotify(error.message);
-        console.log(error);
+        toastErrorNotify(error.message);
+
       }
 }
 
@@ -69,11 +70,22 @@ export const userObserver = (setCurrentUser)=>{
 //to log out
 export const logout = ()=>{
     signOut(auth)
-    // toastSuccessNotify("Logged out successfully")
+    toastSuccessNotify("Logged out successfully")
 }
 
 
+export const signUpProvider = (navigate)=>{
+    const provider = new GoogleAuthProvider();
 
+signInWithPopup(auth, provider)
+  .then((result) => {
+    console.log(result);
+    toastSuccessNotify("Logged in successfully")
+    navigate("/")
+  }).catch((error) => {
+    toastErrorNotify(error.message);
+  });
+}
 
 
 

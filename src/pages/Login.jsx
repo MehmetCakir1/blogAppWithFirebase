@@ -2,7 +2,8 @@ import Blog from "../assets/blog.png";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { signIn } from "../helpers/firebase";
+import { signIn, signUpProvider } from "../helpers/firebase";
+import { toastSuccessNotify } from "../helpers/toastify";
 
 const Login = () => {
   const navigate = useNavigate()
@@ -12,11 +13,12 @@ const Login = () => {
   const handleLogin=(e)=>{
     e.preventDefault()
     signIn(email,password,navigate)
+    
   }
 
-  // const handleProviderLogin=()=>{
-  //   signUpProvider(navigate)
-  // }
+  const handleProviderLogin=()=>{
+    signUpProvider(navigate)
+  }
 
   return (
     <div className="register m-auto p-3 mt-3 bg-light rounded-5">
@@ -54,7 +56,7 @@ const Login = () => {
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
-          <button type="submit" className="btn btn-secondary d-flex align-items-center justify-content-center">
+          <button type="submit" className="btn btn-secondary d-flex align-items-center justify-content-center" onClick={handleProviderLogin}>
             With Google  &nbsp; <span className="fs-4 d-flex align-items-center"><FcGoogle/></span>
           </button>
         </div>
