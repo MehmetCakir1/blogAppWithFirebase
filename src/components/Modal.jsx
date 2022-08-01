@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Modal = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser} = useContext(AuthContext);
   return (
     <div className="modalDiv rounded-3 " >
       {currentUser ? (

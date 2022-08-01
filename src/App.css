@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-image: url('https://picsum.photos/1600/900');
+}
 .btnDiv{
     position: relative;
 }
@@ -13,4 +16,13 @@
     transform: translateX(-50%);
     background-color: white;
     box-shadow: 0 3px 3px grey;
+}
+.register{
+    width: 100%;
+    max-width: 30rem;
+    box-shadow: 0 3px 5px grey;
+}
+.blog-img{
+    width: 90%;
+    max-width: 12rem;
 }
