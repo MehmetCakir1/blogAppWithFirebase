@@ -5,8 +5,9 @@ import { useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Navbar = () => {
- const {show,setShow}=useContext(AuthContext)
 
+ const {show,setShow,currentUser}=useContext(AuthContext)
+console.log(currentUser);
   useEffect(() => {
     const timeout=setTimeout(()=>setShow(false),4000)
 
@@ -18,15 +19,21 @@ const Navbar = () => {
         <div>
             <Link to="/"  className="text-light">LOGO</Link>
         </div>
-        <div className="btnDiv me-2 text-center">
-          <button className="border-0 fs-3 bg-transparent p-2" >
-          <FaUserCircle className="text-danger bg-light rounded-circle" onClick={()=>setShow(!show)}/>
+        <div className=" d-flex align-items-center justify-content-center gap-2">
+                 {
+            currentUser && <h5 className="text-light d-flex align-items-center justify-content-center">{currentUser.displayName}</h5>
+          }
+        <div className="btnDiv me-2 text-center d-flex align-items-center justify-content-center">
+          <button className="border-0 fs-3 bg-transparent pb-1" >
+          <FaUserCircle className="text-danger bg-light rounded-circle " onClick={()=>setShow(!show)}/>
         </button>
         {
           show && 
           <Modal />
         }
         </div>
+        </div>
+ 
         
     </nav>
   );

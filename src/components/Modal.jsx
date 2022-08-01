@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { logout } from "../helpers/firebase";
 
 const Modal = () => {
   const { currentUser} = useContext(AuthContext);
@@ -16,7 +17,7 @@ const Modal = () => {
             <Link to="/login" className="text-dark text-decoration-none fw-bold">New</Link>{" "}
           </li>
           <li className="list-unstyled">
-            <Link to="/login" className="text-dark text-decoration-none fw-bold">Logout</Link>{" "}
+            <Link to="/login" className="text-dark text-decoration-none fw-bold" onClick={()=>logout()}>Logout</Link>{" "}
           </li>
         </ul>
       ) : (

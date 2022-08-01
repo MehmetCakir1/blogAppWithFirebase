@@ -1,30 +1,57 @@
 import Blog from "../assets/blog.png";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { createUser } from "../helpers/firebase";
 
 
 const Register = () => {
-  const navigate=useNavigate()
-  const [firstName,setFirstName]=useState()
-  const [lastName,setLastName]=useState()
-  const [email,setEmail]=useState()
-  const [password,setPassword]=useState()
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const navigate = useNavigate();
 
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-    const displayName = `${firstName} ${lastName}`;
-    createUser(email,password,navigate,displayName)
-  }
+  
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const displayName = `${firstName} ${lastName}`;
+  createUser(email, password, navigate, displayName);
+}
   return (
-    <div className="register m-auto p-3 mt-3 bg-light rounded-5">
+    <div className="register m-auto p-3 mt-3 bg-light rounded-3">
       <div className="text-center">
         <img src={Blog} alt="blog" className="blog-img" />
       </div>
-      <h2 className="text-center text-danger">REGISTER</h2>
+      <h2 className="text-center">REGISTER</h2>
       <form className="text-center m-auto p-2" onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label fw-bold">
+            FIRST NAME
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="firstname"
+            aria-describedby="emailHelp"
+            required
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label fw-bold">
+            LAST NAME
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="lastname"
+            aria-describedby="emailHelp"
+            required
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label fw-bold">
             EMAIL ADDRESS
@@ -34,8 +61,8 @@ const Register = () => {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            onChange={(e)=>setEmail(e.target.value)}
             required
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-3">
@@ -46,8 +73,8 @@ const Register = () => {
             type="password"
             className="form-control"
             id="exampleInputPassword1"
-            onChange={(e)=>setPassword(e.target.value)}
             required
+              onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="d-flex flex-column gap-2">
@@ -62,5 +89,4 @@ const Register = () => {
     </div>
   );
 };
-
 export default Register;
