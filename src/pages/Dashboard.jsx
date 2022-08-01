@@ -1,8 +1,11 @@
 import React from 'react'
+import BlogCard from '../components/BlogCard'
 
 const Dashboard = () => {
   return (
-    <div className='text-light'>Dashboard</div>
+    <div className='text-light'>
+      <BlogCard/>
+    </div>
   )
 }
 

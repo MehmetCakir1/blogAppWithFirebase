@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import {getDatabase, onValue, push, ref, set} from "firebase/database"
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
+import { useEffect, useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -10,6 +12,7 @@ import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
   authDomain: process.env.REACT_APP_authDomain,
+  databaseURL: process.env.REACT_APP_databaseURL,
   projectId: process.env.REACT_APP_projectId,
   storageBucket: process.env.REACT_APP_storageBucket,
   messagingSenderId: process.env.REACT_APP_messagingSenderId,
@@ -47,7 +50,7 @@ export const signIn = async(email,password,navigate)=>{
     try{
         let userCredential=await signInWithEmailAndPassword(auth, email, password)
         navigate("/")
-        console.log(userCredential);
+        // console.log(userCredential);
         toastSuccessNotify("Logged in successfully")
       }catch(error){
         toastErrorNotify(error.message);
@@ -87,10 +90,40 @@ signInWithPopup(auth, provider)
   });
 }
 
+/*--------------------------------DATABASE--------------------------- */
 
+export const db = getDatabase(app);
 
+// add data
+export const addBlog=(blog)=>{
+    const blogRef=ref(db,"blogs/")
+    const newBlogRef=push(blogRef);
+    set(newBlogRef,{
+        title:blog.title,
+        url:blog.url,
+        content:blog.content
+    })
+}
 
+//get data
+export const useGetData=()=>{
+  const [isLoading,setIsLoading]=useState()
+  const [blogList,setBlogList]=useState()
+  useEffect(() => {
+      const db = getDatabase(app);
+      const blogRef=ref(db,"blogs/")
+onValue(blogRef, (snapshot) => {
+const data = snapshot.val();
+const blogArray=[]
 
-
-
+for(let id in data)
+blogArray.push(
+  {id, ...data[id]}
+)
+setBlogList(blogArray)
+setIsLoading(false)
+});
+  }, [])
+  return {isLoading,blogList}
+}
 

@@ -14,7 +14,7 @@ const Modal = () => {
             <Link to="/profile" className="text-dark text-decoration-none fw-bold">Profile</Link>{" "}
           </li>
           <li className="list-unstyled">
-            <Link to="/login" className="text-dark text-decoration-none fw-bold">New</Link>{" "}
+            <Link to="/newblog" className="text-dark text-decoration-none fw-bold">New</Link>{" "}
           </li>
           <li className="list-unstyled">
             <Link to="/login" className="text-dark text-decoration-none fw-bold" onClick={()=>logout()}>Logout</Link>{" "}

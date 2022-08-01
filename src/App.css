@@ -26,3 +26,11 @@ body{
     width: 90%;
     max-width: 12rem;
 }
+.newForm{
+    max-width: 30rem;
+    background-color: rgba(0,0,0,0.5);
+}
+textarea{
+    resize: none;
+    overflow: auto;
+}

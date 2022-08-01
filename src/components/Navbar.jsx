@@ -7,7 +7,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const Navbar = () => {
 
  const {show,setShow,currentUser}=useContext(AuthContext)
-console.log(currentUser);
+// console.log(currentUser);
   useEffect(() => {
     const timeout=setTimeout(()=>setShow(false),4000)
 
