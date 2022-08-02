@@ -1,16 +1,17 @@
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { deleteBlog } from "../helpers/firebase";
+import { deleteBlog, increaseLike } from "../helpers/firebase";
 import { BlogContext } from "../contexts/BlogContext";
 import { AiFillHeart } from "react-icons/ai";
+
 
 const SingleBlog = ({ item }) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  const { editBlog} = useContext(BlogContext);
+  const { editBlog,blog} = useContext(BlogContext);
   // console.log(currentUser.email);
-  const { title, url, content, userName, id} = item;
+  const { title, url, content, userName, id,date} = item;
   return (
     <div className=" col-lg-4 col-md-6 single rounded-3">
       <div className="bg-light p-2">
@@ -21,11 +22,7 @@ const SingleBlog = ({ item }) => {
           {title.length > 10 ? title.slice(0, 8) + "..." : title}
         </h1>
         <p className="text-dark fs-4">
-          {new Date().getDate() +
-            "/" +
-            (new Date().getMonth() + 1) +
-            "/" +
-            new Date().getFullYear()}
+          {date}
         </p>
         <p className="text-dark ">{content.slice(0, 80)}...</p>
         <h5 className="text-dark">@{userName}</h5>
@@ -43,7 +40,7 @@ const SingleBlog = ({ item }) => {
               <button onClick={() => deleteBlog(id)}>REMOVE</button>
               <button
                 onClick={() => {
-                  editBlog(id, title, content, url);
+                  editBlog(item);
                   navigate("/updateblog");
                 }}
               >
@@ -56,11 +53,11 @@ const SingleBlog = ({ item }) => {
           <span
             className="text-danger"
             style={{ cursor: "pointer" }}
-            // onClick={() => setLike(like + 1)}
+            onClick={() => increaseLike(item)}
           >
             <AiFillHeart />
           </span>
-          {/* <span className="text-dark"> {heart}</span> */}
+          <span className="text-dark"> {item.like}</span>
         </div>
       </div>
     </div>

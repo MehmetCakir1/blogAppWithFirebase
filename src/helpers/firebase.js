@@ -105,9 +105,9 @@ export const addBlog=(blog,currentUser)=>{
         title:blog.title,
         url:blog.url,
         content:blog.content,
-        userName:currentUser.displayName
-        // like:blog.like
-        // count:blog.count
+        userName:currentUser.displayName,
+        like:blog.like,
+        date:blog.date
     })
 }
 
@@ -150,3 +150,24 @@ export const updateBlog=(blog)=>{
   toastSuccessNotify("Edited successfully")
   return update(ref(db),updates)
 }
+
+export const increaseLike = (blog) => {
+
+  const db = getDatabase(app);
+  const updates={}
+  updates["blogs/"+blog.id]={
+      ...blog,
+      like: blog.like + 1}
+  return update(ref(db),updates)
+  }
+
+
+
+
+
+
+
+
+
+
+
