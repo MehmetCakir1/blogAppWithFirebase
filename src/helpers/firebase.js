@@ -107,7 +107,8 @@ export const addBlog=(blog,currentUser)=>{
         content:blog.content,
         userName:currentUser.displayName,
         like:blog.like,
-        date:blog.date
+        date:blog.date,
+        usersId:blog.usersId
     })
 }
 
@@ -151,15 +152,26 @@ export const updateBlog=(blog)=>{
   return update(ref(db),updates)
 }
 
-export const increaseLike = (blog) => {
 
-  const db = getDatabase(app);
-  const updates={}
-  updates["blogs/"+blog.id]={
-      ...blog,
-      like: blog.like + 1}
-  return update(ref(db),updates)
-  }
+//like
+// export const increaseLike = (blog,currentUser) => {
+// if(currentUser){
+//   // if(!Object.values(blog.usersId).includes(blog.id)){
+//     // console.log(Object.values(blog.usersId));
+//     // console.log(currentUser);
+//     const db = getDatabase(app);
+//   const updates={}
+//   updates["blogs/"+blog.id]={
+//       ...blog,
+//       like: blog.like + 1}
+//   return update(ref(db),updates)
+//   }
+// // }
+// else{
+//   toastErrorNotify("Please login first")
+// }
+  
+//   }
 
 
 

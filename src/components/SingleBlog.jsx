@@ -9,9 +9,9 @@ import { AiFillHeart } from "react-icons/ai";
 const SingleBlog = ({ item }) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  const { editBlog,blog} = useContext(BlogContext);
+  const { editBlog,blog,increaseLike,color} = useContext(BlogContext);
   // console.log(currentUser.email);
-  const { title, url, content, userName, id,date} = item;
+  const { title, url, content, userName, id,date,like} = item;
   return (
     <div className=" col-lg-4 col-md-6 single rounded-3">
       <div className="bg-light p-2">
@@ -51,13 +51,13 @@ const SingleBlog = ({ item }) => {
         </div>
         <div>
           <span
-            className="text-danger"
+            className={`${!color ? "text-secondary" : "text-danger"}`}
             style={{ cursor: "pointer" }}
             onClick={() => increaseLike(item)}
           >
             <AiFillHeart />
           </span>
-          <span className="text-dark"> {item.like}</span>
+          <span className="text-dark"> {like}</span>
         </div>
       </div>
     </div>
