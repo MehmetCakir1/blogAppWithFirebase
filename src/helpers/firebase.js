@@ -1,9 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getDatabase, onValue, push, ref, set} from "firebase/database"
+import {getDatabase, onValue, push, ref, remove, set, update} from "firebase/database"
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,6 +23,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 
 
 /*---------------------create new user----------------------*/
@@ -95,13 +98,14 @@ signInWithPopup(auth, provider)
 export const db = getDatabase(app);
 
 // add data
-export const addBlog=(blog)=>{
+export const addBlog=(blog,currentUser)=>{
     const blogRef=ref(db,"blogs/")
     const newBlogRef=push(blogRef);
     set(newBlogRef,{
         title:blog.title,
         url:blog.url,
-        content:blog.content
+        content:blog.content,
+        userName:currentUser.displayName
     })
 }
 
@@ -127,3 +131,24 @@ setIsLoading(false)
   return {isLoading,blogList}
 }
 
+//delete
+
+export const deleteBlog = (id)=>{
+  
+  const db = getDatabase(app);
+  const blogRef=ref(db,"blogs/");
+  remove(ref(db,"blogs/"+id))
+  toastSuccessNotify("Deleted successfully")
+
+}
+
+
+//edit
+
+export const updateBlog=(blog)=>{
+  const db = getDatabase(app);
+  const updates={}
+  updates["blogs/"+blog.id]=blog
+  toastSuccessNotify("Edited successfully")
+  return update(ref(db),updates)
+}

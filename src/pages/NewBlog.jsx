@@ -1,10 +1,13 @@
+import { updateCurrentUser } from "firebase/auth";
 import React from "react";
 import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 import { BlogContext } from "../contexts/BlogContext";
-import { addBlog } from "../helpers/firebase";
+import { addBlog, updateBlog } from "../helpers/firebase";
 
 const NewBlog = () => {
   const { blog,setBlog,initialValues} = useContext(BlogContext);
+  const {currentUser}=useContext(AuthContext)
 
   const handleChange = (e)=> {
     e.preventDefault()
@@ -15,9 +18,15 @@ const NewBlog = () => {
 
   const handleSubmitBlog=(e)=>{
     e.preventDefault()
-    addBlog(blog)
+    if(blog.id){
+      updateBlog(blog,currentUser)
+    }else{
+      addBlog(blog,currentUser)
+    }
     setBlog(initialValues)
   }
+
+
   return (
     <div>
       <form className="newForm row d-flex align-items-center justify-content-center flex-column gap-3  m-auto mt-4 p-3 rounded-5" onSubmit={handleSubmitBlog}>

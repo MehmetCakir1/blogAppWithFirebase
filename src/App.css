@@ -6,7 +6,9 @@
 body{
     background-image: url('https://picsum.photos/1600/900');
     background-size: cover;
-    height: 100vh;
+    /* height: 100%; */
+    /* background-position: center; */
+    background-repeat: no-repeat;
 }
 .btnDiv{
     position: relative;
@@ -26,7 +28,7 @@ body{
 }
 .blog-img{
     width: 90%;
-    max-width: 12rem;
+    max-width:12rem;
 }
 .newForm{
     max-width: 30rem;
