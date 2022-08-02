@@ -106,6 +106,8 @@ export const addBlog=(blog,currentUser)=>{
         url:blog.url,
         content:blog.content,
         userName:currentUser.displayName
+        // like:blog.like
+        // count:blog.count
     })
 }
 
@@ -132,19 +134,15 @@ setIsLoading(false)
 }
 
 //delete
-
 export const deleteBlog = (id)=>{
-  
   const db = getDatabase(app);
   const blogRef=ref(db,"blogs/");
   remove(ref(db,"blogs/"+id))
   toastSuccessNotify("Deleted successfully")
-
 }
 
 
 //edit
-
 export const updateBlog=(blog)=>{
   const db = getDatabase(app);
   const updates={}

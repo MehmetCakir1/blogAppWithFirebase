@@ -1,6 +1,7 @@
 import { updateCurrentUser } from "firebase/auth";
 import React from "react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { BlogContext } from "../contexts/BlogContext";
 import { addBlog, updateBlog } from "../helpers/firebase";
@@ -8,6 +9,7 @@ import { addBlog, updateBlog } from "../helpers/firebase";
 const NewBlog = () => {
   const { blog,setBlog,initialValues} = useContext(BlogContext);
   const {currentUser}=useContext(AuthContext)
+  const navigate=useNavigate()
 
   const handleChange = (e)=> {
     e.preventDefault()
@@ -19,11 +21,13 @@ const NewBlog = () => {
   const handleSubmitBlog=(e)=>{
     e.preventDefault()
     if(blog.id){
-      updateBlog(blog,currentUser)
+      updateBlog(blog)
     }else{
       addBlog(blog,currentUser)
     }
     setBlog(initialValues)
+    navigate("/")
+   
   }
 
 
@@ -62,7 +66,7 @@ const NewBlog = () => {
           type="submit"
           className="py-2 rounded-3 border-0 btn btn-primary"
         >
-          SUBMIT
+        SUBMIT
         </button>
       </form>
     </div>

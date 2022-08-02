@@ -65,7 +65,9 @@ textarea{
     width: 100%;
     object-fit: contain;
 }
-
+.title{
+    word-wrap: break-word;
+}
 
 
 
