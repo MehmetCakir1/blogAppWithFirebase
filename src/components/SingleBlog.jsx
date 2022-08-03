@@ -9,9 +9,9 @@ import { AiFillHeart } from "react-icons/ai";
 const SingleBlog = ({ item }) => {
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
-  const { editBlog,blog,increaseLike,color} = useContext(BlogContext);
+  const { editBlog,blog,increaseLike} = useContext(BlogContext);
   // console.log(currentUser.email);
-  const { title, url, content, userName, id,date,like} = item;
+  const { title, url, content, userName, id,date,like,color} = item;
   return (
     <div className=" col-lg-4 col-md-6 single rounded-3">
       <div className="bg-light p-2">

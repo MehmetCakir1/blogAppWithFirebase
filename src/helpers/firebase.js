@@ -48,7 +48,7 @@ export const createUser= async(email,password,navigate,displayName)=>{
 }
 /*---------------------sign in----------------------*/
 
-export const signIn = async(email,password,navigate)=>{
+export const signIn = async(email,password,navigate,blog)=>{
     
     try{
         let userCredential=await signInWithEmailAndPassword(auth, email, password)
@@ -57,7 +57,6 @@ export const signIn = async(email,password,navigate)=>{
         toastSuccessNotify("Logged in successfully")
       }catch(error){
         toastErrorNotify(error.message);
-
       }
 }
 
@@ -74,7 +73,7 @@ export const userObserver = (setCurrentUser)=>{
 
 
 //to log out
-export const logout = ()=>{
+export const logout = (blog)=>{
     signOut(auth)
     toastSuccessNotify("Logged out successfully")
 }
@@ -108,13 +107,13 @@ export const addBlog=(blog,currentUser)=>{
         userName:currentUser.displayName,
         like:blog.like,
         date:blog.date,
-        usersId:blog.usersId
+        usersId:blog.usersId,
+        color:blog.color
     })
 }
 
 //get data
 export const useGetData=()=>{
-  const [isLoading,setIsLoading]=useState()
   const [blogList,setBlogList]=useState()
   useEffect(() => {
       const db = getDatabase(app);
@@ -128,10 +127,9 @@ blogArray.push(
   {id, ...data[id]}
 )
 setBlogList(blogArray)
-setIsLoading(false)
 });
   }, [])
-  return {isLoading,blogList}
+  return {blogList}
 }
 
 //delete
@@ -153,25 +151,7 @@ export const updateBlog=(blog)=>{
 }
 
 
-//like
-// export const increaseLike = (blog,currentUser) => {
-// if(currentUser){
-//   // if(!Object.values(blog.usersId).includes(blog.id)){
-//     // console.log(Object.values(blog.usersId));
-//     // console.log(currentUser);
-//     const db = getDatabase(app);
-//   const updates={}
-//   updates["blogs/"+blog.id]={
-//       ...blog,
-//       like: blog.like + 1}
-//   return update(ref(db),updates)
-//   }
-// // }
-// else{
-//   toastErrorNotify("Please login first")
-// }
-  
-//   }
+
 
 
 
