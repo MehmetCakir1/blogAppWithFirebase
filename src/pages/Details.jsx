@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const Details = () => {
   const {state}=useLocation()
   const navigate=useNavigate()
-  const {url,title,content}=state;
+  const {url,title,content,date}=state;
   return (
     <div className='bg-light m-auto detailContainer p-3 mt-3'>
       <div className="details-imgDiv m-auto">
@@ -12,11 +12,7 @@ const Details = () => {
       </div>
       <h1 className="text-uppercase text-center p-1">{title}</h1>
       <p className="text-dark fs-4 d-flex justify-content-end">
-          {new Date().getDate() +
-            "/" +
-            (new Date().getMonth() + 1) +
-            "/" +
-            new Date().getFullYear()}
+          {date}
         </p>
         <p>{content}</p>
         <div className="text-center">
