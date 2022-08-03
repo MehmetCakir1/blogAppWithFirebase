@@ -20,7 +20,7 @@ const Navbar = () => {
             <Link to="/"  className="text-light"> <img src={Logo} alt="Logo" /></Link>
         </div>
         <div className="d-flex align-items-center justify-content-center">
-          <div className="d-flex align-items-center justify-content-center px-3">
+          <div className="d-flex align-items-center justify-content-center">
               {
             currentUser && <h5 className="text-dark d-flex align-items-center m-0">{currentUser.displayName}</h5>
           }

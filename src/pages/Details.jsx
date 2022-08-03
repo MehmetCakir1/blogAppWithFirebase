@@ -15,7 +15,7 @@ const Details = () => {
   return (
     <div className='bg-light m-auto detailContainer p-3 mt-3'>
       <div className="details-imgDiv m-auto">
-        <img src={url} alt={title} />
+        <img src={url ? url : "https://picsum.photos/1600/900?random=2"} alt={title} />
       </div>
       <h1 className="text-uppercase text-center p-1">{title}</h1>
       <p className="text-dark fs-4 d-flex justify-content-end">
