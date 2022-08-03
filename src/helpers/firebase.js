@@ -74,10 +74,10 @@ export const userObserver = (setCurrentUser)=>{
 
 
 //to log out
-export const logout = (blog)=>{
+export const logout = (bloglist)=>{
     signOut(auth)
     toastSuccessNotify("Logged out successfully")
-    blog.map((item)=>updateColor(item))
+    bloglist.map((item)=>updateColor(item))
 }
 
 const updateColor = (blog)=>{
