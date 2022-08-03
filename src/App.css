@@ -10,6 +10,9 @@ body{
     /* background-position: center; */
     background-repeat: no-repeat;
 }
+.navbar{
+    background-color: rgb(95, 202, 238) !important;
+}
 .logo-div img{
     width: 60px;
     height: 60px;
@@ -17,9 +20,7 @@ body{
 .btnDiv{
     position: relative;
 }
-.btnDiv button{
-    width: 4.5rem;
-}
+
 .modalDiv{
     position: absolute;
     left: 50%;
@@ -27,6 +28,7 @@ body{
     transform: translateX(-50%);
     background-color: white;
     box-shadow: 0 3px 3px grey;
+    width: 6rem;
 }
 .register{
     width: 100%;
@@ -67,10 +69,12 @@ textarea{
 }
 .details-imgDiv{
     width: 80%;
+    height: 15rem;
 }
 .details-imgDiv img{
     width: 100%;
-    object-fit: contain;
+    height: 100%;
+    object-fit: fill;
 }
 .title{
     word-wrap: break-word;
@@ -79,7 +83,9 @@ textarea{
     width: 90%;
     max-width: 40rem;
 }
-
+.content-div{
+    height: 3rem;
+}
 
 
 

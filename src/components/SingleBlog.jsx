@@ -1,22 +1,23 @@
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { deleteBlog, increaseLike } from "../helpers/firebase";
 import { BlogContext } from "../contexts/BlogContext";
 import { AiFillHeart } from "react-icons/ai";
 
 
+
 const SingleBlog = ({ item }) => {
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
-  const { editBlog,blog,increaseLike} = useContext(BlogContext);
+  const {currentUser}=useContext(AuthContext)
+  const { increaseLike} = useContext(BlogContext);
   // console.log(currentUser.email);
-  const { title, url, content, userName, id,date,like,color} = item;
+  const { title, url, content, userName,date,like,color,usersId} = item;
+  console.log(usersId.includes(currentUser.email))
   return (
-    <div className=" col-lg-4 col-md-6 single rounded-3">
-      <div className="bg-light p-2">
+    <div className="  col-md-5 single ">
+      <div className="bg-light p-2 card">
         <div className="img-div">
-          <img src={url} alt={title} />
+          <img src={url ? url : "https://picsum.photos/1600/900?random=2"} alt={title} />
         </div>
         <h1 className="text-dark header text-center text-capitalize title">
           {title.length > 11 ? title.slice(0, 8) + "..." : title}
@@ -24,8 +25,9 @@ const SingleBlog = ({ item }) => {
         <p className="text-dark fs-4">
           {date}
         </p>
-        <p className="text-dark ">{content.slice(0, 80)}...</p>
+        <p className="text-dark content-div">{content.slice(0, 80)}...</p>
         <h5 className="text-dark">@{userName}</h5>
+        <div className="d-flex justify-content-between align-items-center">
         <div className="btnDiv d-flex justify-content-center ">
           <button
             onClick={() =>
@@ -35,31 +37,19 @@ const SingleBlog = ({ item }) => {
           >
             DETAILS
           </button>
-          {currentUser.displayName == userName && (
-            <>
-              <button onClick={() => deleteBlog(id)} className="bg-danger border-0 text-light rounded-3 p-1 mx-1">REMOVE</button>
-              <button
-                onClick={() => {
-                  editBlog(item);
-                  navigate("/updateblog");
-                }}
-                className="bg-success border-0 text-light rounded-3 p-1 mx-1"
-              >
-                EDIT
-              </button>
-            </>
-          )}
         </div>
         <div>
           <span
-            className={`${!color ? "text-secondary" : "text-danger"}`}
+            className={`${!color  ? usersId.includes(currentUser.email) ? "text-danger" :"text-secondary" : "text-danger"} fs-4`}
             style={{ cursor: "pointer" }}
             onClick={() => increaseLike(item)}
           >
             <AiFillHeart />
           </span>
-          <span className="text-dark"> {like}</span>
+          <span className="text-dark fs-5"> {like}</span>
         </div>
+        </div>
+
       </div>
     </div>
   );

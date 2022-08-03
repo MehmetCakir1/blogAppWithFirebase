@@ -72,10 +72,19 @@ export const userObserver = (setCurrentUser)=>{
 }
 
 
+
 //to log out
 export const logout = (blog)=>{
     signOut(auth)
     toastSuccessNotify("Logged out successfully")
+    blog.map((item)=>updateColor(item))
+}
+
+const updateColor = (blog)=>{
+  const db = getDatabase(app);
+  const updates={}
+  updates["blogs/"+blog.id]={...blog,color:false}
+  return update(ref(db),updates)
 }
 
 
