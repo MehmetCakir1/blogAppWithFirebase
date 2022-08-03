@@ -19,14 +19,14 @@ const SingleBlog = ({ item }) => {
           <img src={url} alt={title} />
         </div>
         <h1 className="text-dark header text-center text-capitalize title">
-          {title.length > 10 ? title.slice(0, 8) + "..." : title}
+          {title.length > 11 ? title.slice(0, 8) + "..." : title}
         </h1>
         <p className="text-dark fs-4">
           {date}
         </p>
         <p className="text-dark ">{content.slice(0, 80)}...</p>
         <h5 className="text-dark">@{userName}</h5>
-        <div className="btnDiv ">
+        <div className="btnDiv d-flex justify-content-center ">
           <button
             onClick={() =>
               navigate("/details", { state: item, replace: false })
@@ -37,12 +37,13 @@ const SingleBlog = ({ item }) => {
           </button>
           {currentUser.displayName == userName && (
             <>
-              <button onClick={() => deleteBlog(id)}>REMOVE</button>
+              <button onClick={() => deleteBlog(id)} className="bg-danger border-0 text-light rounded-3 p-1 mx-1">REMOVE</button>
               <button
                 onClick={() => {
                   editBlog(item);
                   navigate("/updateblog");
                 }}
+                className="bg-success border-0 text-light rounded-3 p-1 mx-1"
               >
                 EDIT
               </button>

@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import Modal  from "./Modal";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-
+import Logo from "../assets/logo.png"
 const Navbar = () => {
 
  const {show,setShow,currentUser}=useContext(AuthContext)
@@ -16,8 +16,8 @@ const Navbar = () => {
   
   return (
     <nav className="navbar d-flex justify-content-between bg-primary px-3">
-        <div>
-            <Link to="/"  className="text-light">LOGO</Link>
+        <div className="logo-div">
+            <Link to="/"  className="text-light"> <img src={Logo} alt="Logo" /></Link>
         </div>
         <div className=" d-flex align-items-center justify-content-center gap-2">
                  {
