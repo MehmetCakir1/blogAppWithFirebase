@@ -4,8 +4,6 @@ import {getDatabase, onValue, push, ref, remove, set, update} from "firebase/dat
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/toastify";
 import { useEffect, useState } from "react";
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -48,7 +46,7 @@ export const createUser= async(email,password,navigate,displayName)=>{
 }
 /*---------------------sign in----------------------*/
 
-export const signIn = async(email,password,navigate,blog)=>{
+export const signIn = async(email,password,navigate)=>{
     
     try{
         let userCredential=await signInWithEmailAndPassword(auth, email, password)
@@ -60,7 +58,6 @@ export const signIn = async(email,password,navigate,blog)=>{
       }
 }
 
-// to prevent double register
 export const userObserver = (setCurrentUser)=>{
     onAuthStateChanged(auth, (user) => {
         if (user) {

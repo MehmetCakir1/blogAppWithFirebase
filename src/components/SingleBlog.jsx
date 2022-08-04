@@ -9,10 +9,11 @@ import { AiFillHeart } from "react-icons/ai";
 const SingleBlog = ({ item }) => {
   const navigate = useNavigate();
   const {currentUser}=useContext(AuthContext)
+  console.log(currentUser);
   const { increaseLike} = useContext(BlogContext);
   // console.log(currentUser.email);
   const { title, url, content, userName,date,like,color,usersId} = item;
-  console.log(usersId.includes(currentUser.email))
+  // console.log(usersId.includes(currentUser.email))
   return (
     <div className="  col-md-5 single ">
       <div className="bg-light p-2 card">

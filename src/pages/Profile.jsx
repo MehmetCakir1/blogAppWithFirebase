@@ -1,21 +1,38 @@
 import React from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../contexts/AuthContext'
 
 const Profile = () => {
+  const {currentUser}=useContext(AuthContext);
+
+  console.log(currentUser.displayName);
+  let temp= currentUser.displayName
+  console.log(String(temp).split(" "));
+  temp=String(temp).split(" ");
+
+  let firstName=temp[0]
+  let lastName=temp[1]
+  
+
+
+
   return (
-    <div className='bg-light table-div table-striped m-auto'>
-      <table className='table'>
-        <tr className='table-primary'>
-          <th >ffaf</th>
-          <td >fdfdf</td>
+    <div className='bg-light table-div m-auto table'>
+      <table className='table table-striped table-bordered border-dark'>
+        <tbody>
+           <tr className='table-primary table-bordered border-dark'>
+          <th >First Name</th>
+          <td >{firstName}</td>
         </tr>
         <tr>
-          <th >dfdfdf</th>
-          <td >ffffffff</td>
+          <th >Last Name</th>
+          <td >{lastName}</td>
         </tr >
-        <tr>
-          <th >dfdf</th>
-          <td >dfdfdf</td>
+        <tr className='table-primary table-bordered border-dark'>
+          <th >Email Address</th>
+          <td >{currentUser.email}</td>
         </tr>
+        </tbody>
       </table>
     </div>
   )
