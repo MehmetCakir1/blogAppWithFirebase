@@ -12,6 +12,8 @@
 - __Javascript__<br>
 - __You can delete or edit what you create but not other's blog__
 - __You can login with your google account thanks to Firebase__
+- __If you like the blog,you can click the like button__
+- __If you misclick the like buttton,you can undo by clicking again__
 
 <div align="center"><img src="https://github.com/MehmetCakir1/blogAppWithFirebase/blob/master/blogapp.PNG">
 
