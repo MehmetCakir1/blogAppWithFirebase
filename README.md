@@ -10,8 +10,8 @@
 - __Bootstrap5__<br>
 - __Form__<br>
 - __Javascript__<br>
-- You can delete or edit what you created but not other's blog
-- You can login with your google account thanks to Firebase
+- __You can delete or edit what you create but not other's blog__
+- __You can login with your google account thanks to Firebase__
 
 <div align="center"><img src="https://github.com/MehmetCakir1/blogAppWithFirebase/blob/master/blogapp.PNG">
 
