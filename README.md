@@ -7,6 +7,7 @@
 - __Context-API__<br>
 - __React-Router-Dom-v6__<br>
 - __Private Route__<br>
+- __Toastify__
 - __Bootstrap5__<br>
 - __Form__<br>
 - __Javascript__<br>
